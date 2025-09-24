@@ -1,0 +1,22 @@
+{
+  "serial": {
+    "port": "auto",
+    "baud": 9600
+  },
+  "joystick": {
+    "device": "auto",
+    "dead_zone": 0.05,
+    "invert_v": false,
+    "invert_w": false,
+    "right_axis_candidates": ["ABS_RX", "ABS_Z", "ABS_RY"]
+  },
+  "tx": {
+    "max_rate_hz": 10,
+    "hb_timeout_sec": 15.0
+  },
+  "protocol": {
+    "hb_msg": "READY",
+    "timeout_msg": "TIMEOUT",
+    "timeout_clear_msg": "TIMEOUT_CLEAR"
+  }
+}
