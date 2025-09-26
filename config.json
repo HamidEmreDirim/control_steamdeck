@@ -25,7 +25,7 @@
     "speed_default_scale": 0.70,
     "speed_plus_scale": 1.00
   },
-  "ws": { "host": "0.0.0.0", "port": 8765, "publish_hz": 2.0 }
+  "ws": { "host": "0.0.0.0", "port": 8080, "publish_hz": 2.0 }
 
 
 }

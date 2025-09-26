@@ -24,7 +24,7 @@ MODEL, SCALE = "fsrcnn", 2                   # 2× FSRCNN
 MODELDIR    = pathlib.Path("~/superres/models").expanduser()
 BIND_HOST   = "0.0.0.0"
 BIND_PORT   = 8765
-ROUTE_PATH  = "/stream"                      # ws://host:8765/stream
+ROUTE_PATH  = "/rgb_camera"                      # ws://host:8765/stream
 TARGET_FPS  = 30                             # throttle to ~30 FPS to clients
 JPEG_QUALITY = 80                            # balance size vs. quality
 # ─────────────────────────────────────────────────────────────────

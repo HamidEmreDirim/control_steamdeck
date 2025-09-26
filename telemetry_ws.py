@@ -7,7 +7,7 @@ class TelemetryServer:
     Simple broadcast WebSocket for robot status.
     Publishes a JSON snapshot every `period` seconds to all clients.
     """
-    def __init__(self, state, link, hb_timeout_s=15.0, host="0.0.0.0", port=8765):
+    def __init__(self, state, link, hb_timeout_s=15.0, host="0.0.0.0", port=8080):
         self.state = state
         self.link = link
         self.hb_timeout_s = float(hb_timeout_s)
@@ -17,8 +17,13 @@ class TelemetryServer:
         self._server = None
 
     async def handler(self, websocket, path=None):
-        # Accept any path; immediately send a snapshot on connect
+        # Only allow /telemetry
+        if path != "/telemetry":
+            await websocket.close(code=1008, reason="Invalid path")
+            return
+
         self.clients.add(websocket)
+        print("handled")
         try:
             await websocket.send(self._snapshot_json())
             async for _ in websocket:
@@ -108,5 +113,5 @@ class TelemetryServer:
 
     async def start(self):
         import websockets
+        print(f"* WebSocket up: ws://{self.host}:{self.port}/telemetry  (subscribers: {len(self.clients)})")
         self._server = await websockets.serve(self.handler, self.host, self.port)
-        print(f"* WebSocket up: ws://{self.host}:{self.port}  (subscribers: {len(self.clients)})")

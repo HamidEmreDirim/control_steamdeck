@@ -164,7 +164,7 @@ def main():
         port=cfg.ws.port
     )
     publish_period = 1.0 / float(cfg.ws.publish_hz)
-
+    print(cfg.ws.host)
     async def run_all():
         await ws.start()  # start server
         await asyncio.gather(
